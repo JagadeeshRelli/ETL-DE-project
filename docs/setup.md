@@ -60,6 +60,7 @@ This will build the containers.
 4. Start the containers with:
 
 `docker-compose up`
+(make sure you have good enough RAM)
 
 5. You can view ,trigger the dags by visiting to `localhost:8080` in any browser
 6. Stop the containers with:
