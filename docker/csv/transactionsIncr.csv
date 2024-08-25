@@ -1,0 +1,14 @@
+transactionid,userid,amount,type,date,status,method
+1112,110,500.00,credit,2024-08-21 10:00:00,completed,credit card
+1113,111,100.00,debit,2024-08-21 11:30:00,pending,bank transfer
+1114,112,250.00,credit,2024-08-21 12:45:00,completed,UPI
+1115,113,700.00,debit,2024-08-21 14:00:00,failed,debit card
+1116,114,1500.00,credit,2024-08-21 15:15:00,completed,wallet
+1117,115,200.00,debit,2024-08-21 16:30:00,completed,bank transfer
+1118,116,300.00,credit,2024-08-21 17:45:00,pending,UPI
+119,117,500.00,debit,2024-08-21 19:00:00,completed,credit card
+1120,118,250.00,credit,2024-08-21 20:15:00,completed,wallet
+1121,119,1000.00,debit,2024-08-21 21:30:00,failed,debit card
+1122,110,500.00,credit,2024-08-21 10:00:00,completed,credit card
+1123,114,1500.00,credit,2024-08-21 15:15:00,completed,wallet
+1126,125,100.00,debit,2024-08-24 11:30:00,pending,bank transfer
