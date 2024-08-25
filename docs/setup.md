@@ -50,8 +50,8 @@ Enter the password when prompted
 ## Docker Setup
 
 1. Install Docker Desktop.
-2. Edit .env file in the docker folder, type your postgresql password in place of <your_password> and save
-3. Now Open Command Prompt in the same folder to run:
+2. Edit .env file in the docker folder,update DB_PASSWORD accordingly
+4. Now Open Command Prompt in the same folder to run:
 
    `docker-compose build`
 
