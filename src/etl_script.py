@@ -56,7 +56,7 @@ def transform_users(users_df):
     })
     
     # Validate contact format
-    users_df = users_df[users_df['contact'].str.match(r'^\d{10}$', na=False)]
+    users_df['contact'] = users_df['contact'].apply(lambda x: x if pd.Series(x).str.match(r'^\d{10}$').any() else 'not provided')
     
     # Normalize column names to lowercase
     users_df.columns = [col.lower() for col in users_df.columns]
