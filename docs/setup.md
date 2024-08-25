@@ -33,7 +33,7 @@ cd <project_name>
 3. open terminal and run the below command to create database
 `createdb -h localhost -U postgres walletdb`
 4. To create tables and related things , pls run :
-   `psql -h localhost -U postgres -d mydatabase -f /<repo name>/src/database/sql_scripts.sql`
+   `psql -h localhost -U postgres -d walletdb -f /<repo name>/src/database/sql_scripts.sql`
 
 ## Docker Setup
 
