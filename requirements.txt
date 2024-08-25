@@ -1,6 +1,7 @@
 
 # Core dependencies
 pandas
+python-loadenv
 
 
 # Database
