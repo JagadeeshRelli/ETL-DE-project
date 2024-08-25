@@ -3,7 +3,7 @@
 
 ## Architecture Diagram
 
-![ETL Architecture](./assets/etl-architecture.png)
+![ETL Architecture](architecture.png)
 
 *Figure 1: High-Level ETL Architecture Diagram*
 
