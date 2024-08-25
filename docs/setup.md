@@ -63,7 +63,10 @@ This will build the containers.
 (make sure you have good enough RAM)
 
 5. You can view ,trigger the dags by visiting to `localhost:8080` in any browser
-6. Stop the containers with:
+   (default airflow credentials :
+   username -  airflow
+   password - airflow)
+7. Stop the containers with:
 
 `docker-compose down`
 
