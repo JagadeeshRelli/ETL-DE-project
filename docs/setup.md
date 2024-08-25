@@ -41,28 +41,28 @@ cd <project_name>
 2. Edit .env file in the docker folder, type your postgresql password in place of <your_password> and save
 3. Now Open Command Prompt in the same folder to run:
 
-   docker-compose build
+   `docker-compose build`
 
 This will build the containers.
 
 4. Start the containers with:
 
-docker-compose up
+`docker-compose up`
 
-5. You can view ,trigger the dags by visiting to localhost:8080 in any browser
+5. You can view ,trigger the dags by visiting to `localhost:8080` in any browser
 6. Stop the containers with:
 
-docker-compose down
+`docker-compose down`
 
 You can visually monitor everything in Docker Desktop.
 
 
 ### Running the Project
 
-python etl_script.py
+`python etl_script.py`
 
 ### Testing
 
-python test.py
+`python test.py`
 
 
