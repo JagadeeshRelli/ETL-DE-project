@@ -26,14 +26,26 @@ cd <project_name>
    `pip install -r requirements.txt`
 
 
-## Database Setup
+### Database Setup
 
 1. Install PostgreSQL.
-2. set the password
-3. open terminal and run the below command to create database
+2. set the password and update .env file accordingly
+3. open pgadmin and connect to server using password
+4. open terminal and run the below command to create database
 `createdb -h localhost -U postgres walletdb`
-4. To create tables and related things , pls run :
-   `psql -h localhost -U postgres -d walletdb -f /<repo name>/src/database/sql_scripts.sql`
+Enter the password when prompted
+6. To create tables and related things , pls run :
+   `psql -h localhost -U postgres -d walletdb -f src/database/sql_scripts.sql`
+
+## Running the Project
+
+`python src/etl_script.py`
+
+
+## Testing
+
+`python test/test.py`
+
 
 ## Docker Setup
 
@@ -57,12 +69,6 @@ This will build the containers.
 You can visually monitor everything in Docker Desktop.
 
 
-### Running the Project
 
-`python etl_script.py`
-
-### Testing
-
-`python test.py`
 
 
