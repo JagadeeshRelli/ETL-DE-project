@@ -185,9 +185,10 @@ def load_data(cleaned_users_df, cleaned_transactions_df, engine):
 def main():
     # Extract data from CSV files
     users_df, transactions_df = extract_data(
-        "C:/Users/jagad/OneDrive/Desktop/paynearby/users.csv",
-        "C:/Users/jagad/OneDrive/Desktop/paynearby/transactions.csv"
+        "data/users.csv",
+        "data/transactions.csv"
     )
+
 
     print("\nData extracted successfully.")
     
