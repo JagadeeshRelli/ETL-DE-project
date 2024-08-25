@@ -37,3 +37,10 @@ The ETL process follows these steps:
 1. **Extraction:** Data is extracted from the source systems.
 2. **Transformation:** The extracted data undergoes cleaning, and transformation.
 3. **Loading:** The transformed data is loaded into the target database
+
+
+
+# ER Diagram
+
+
+![ETL Architecture](data-model.png)
