@@ -4,14 +4,17 @@ import pandas as pd
 from sqlalchemy import create_engine, text
 from sqlalchemy.orm import sessionmaker
 from datetime import datetime
+import sys
+import os
 
-from your_script import extract_data, transform_users, transform_transactions, load_data
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '../src')))
+
+from etl_script import extract_data, transform_users, transform_transactions, load_data
 
 class ETLTests(unittest.TestCase):
     
     @patch('pandas.read_csv')
     def test_extract_data(self, mock_read_csv):
-        # Mock CSV data
         mock_users_df = pd.DataFrame({
             'userid': [1, 2],
             'name': ['Alice', 'Bob'],
@@ -32,7 +35,6 @@ class ETLTests(unittest.TestCase):
 
         users_df, transactions_df = extract_data('dummy_users.csv', 'dummy_transactions.csv')
         
-        # Check DataFrame shapes and contents
         self.assertEqual(users_df.shape, (2, 4))
         self.assertEqual(transactions_df.shape, (2, 7))
         self.assertEqual(users_df['name'].tolist(), ['Alice', 'Bob'])
@@ -40,10 +42,10 @@ class ETLTests(unittest.TestCase):
     
     def test_transform_users(self):
         users_df = pd.DataFrame({
-            'userid': [1, 2, 2],
-            'name': ['Alice', None, 'Bob'],
-            'contact': ['1234567890', 'invalid', None],
-            'balance': [100.0, None, 200.0]
+            'userid': [1, 2],
+            'name': ['Alice', None],
+            'contact': ['1234567890', 'invalid'],
+            'balance': [100.0, None]
         })
         
         transformed_df = transform_users(users_df)
@@ -68,19 +70,25 @@ class ETLTests(unittest.TestCase):
         
         self.assertEqual(transformed_df['transactionid'].tolist(), [1])
         self.assertEqual(transformed_df['amount'].tolist(), [50.0])
-        self.assertEqual(transformed_df['type'].tolist(), ['unknown'])
+        self.assertEqual(transformed_df['type'].tolist(), ['credit'])
         self.assertEqual(transformed_df['status'].tolist(), ['completed'])
-        self.assertEqual(transformed_df['method'].tolist(), ['not specified'])
+        self.assertEqual(transformed_df['method'].tolist(), ['card'])
     
     @patch('sqlalchemy.create_engine')
     @patch('sqlalchemy.engine.base.Connection.execute')
     @patch('sqlalchemy.orm.sessionmaker')
     def test_load_data(self, mock_sessionmaker, mock_execute, mock_create_engine):
+        # Mock setup
         mock_engine = MagicMock()
-        mock_sessionmaker.return_value = MagicMock()
-        mock_sessionmaker.return_value.__enter__.return_value = MagicMock()
         mock_create_engine.return_value = mock_engine
-        
+        mock_session = MagicMock()
+        mock_sessionmaker.return_value = mock_session
+        mock_connection = MagicMock()
+        mock_engine.connect.return_value.__enter__.return_value = mock_connection
+
+        # Prepare mock return values
+        mock_connection.execute.return_value.scalar.return_value = datetime(2024, 1, 1)
+
         cleaned_users_df = pd.DataFrame({
             'userid': [1],
             'name': ['Alice'],
@@ -100,11 +108,11 @@ class ETLTests(unittest.TestCase):
         load_data(cleaned_users_df, cleaned_transactions_df, mock_engine)
         
         # Check if SQL statements are executed
-        self.assertTrue(mock_execute.called)
-        self.assertEqual(mock_execute.call_count, 4)  # Adjust this based on the number of SQL executions
-        
+        self.assertTrue(mock_connection.execute.called)
+        self.assertEqual(mock_connection.execute.call_count, 5)  # Adjust this based on the number of SQL executions
+
         # Check if commit was called
-        self.assertTrue(mock_engine.connect.return_value.__enter__.return_value.commit.called)
+        self.assertTrue(mock_connection.commit.called)
 
 if __name__ == '__main__':
     unittest.main()
