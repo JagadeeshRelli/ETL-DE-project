@@ -23,7 +23,7 @@ cd <project_name>
 2. Install the required Python packages using pip:
 
 
-   pip install -r requirements.txt
+   `pip install -r requirements.txt`
 
 
 ## Database Setup
