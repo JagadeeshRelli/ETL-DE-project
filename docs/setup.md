@@ -13,6 +13,7 @@
 
 
 git clone <repo_url>
+
 cd <project_name>
 
 ### Install Dependencies
