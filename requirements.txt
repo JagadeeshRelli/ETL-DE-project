@@ -1,0 +1,10 @@
+
+# Core dependencies
+pandas
+
+
+# Database
+SQLAlchemy
+psycopg2-binary
+
+
