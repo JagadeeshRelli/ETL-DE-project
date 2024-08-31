@@ -92,8 +92,7 @@ def transform_transactions(transactions_df):
     # Normalize column names to lowercase
     transactions_df.columns = [col.lower() for col in transactions_df.columns]
     
-    # Remove rows with outlier amounts
-    transactions_df = transactions_df[transactions_df['amount'] <= 10000]
+
     
     return transactions_df
 
